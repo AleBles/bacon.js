@@ -26,14 +26,21 @@ var bacon = (function () {
 
     function stopSizzle() {
         var sizzler = getAudio();
+        sizzler.loop = false;
+        this.currentTime = 0;
         sizzler.pause();
     }
 
     function getAudio() {
         var ribbon = getRibbon(),
-            player = document.createElement("audio");
+            player = document.getElementById("bacon-sizzle");
 
-        ribbon.appendChild(player);
+        if (null === player) {
+            player = document.createElement("audio");
+            player.id = "bacon-sizzle";
+            ribbon.appendChild(player);
+        }
+
         return player;
     }
 
@@ -84,14 +91,14 @@ var bacon = (function () {
             var content = getContent();
             content.onclick = bacon.off;
             content.innerHTML = '<h1>Remove bacon!</h1>';
-            //playSizzle();
+            playSizzle();
         },
         off: function () {
             document.body.style.background='';
             var content = getContent();
             content.onclick = bacon.on;
             content.innerHTML = '<h1>Add bacon!</h1>';
-            //stopSizzle();
+            stopSizzle();
         },
 
         init: function () {
