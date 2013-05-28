@@ -45,11 +45,34 @@ var bacon = (function () {
     }
 
     function getRibbon() {
-        var ribbon = document.getElementById("ribbon");
+        var ribbon = document.getElementById("ribbon"),
+            rStyle;
         if (ribbon === null) {
             ribbon = document.createElement("div");
             ribbon.id = "ribbon";
             ribbon.className = "ribbon";
+
+            //Style
+            rStyle = ribbon.style;
+            rStyle.position = 'fixed';
+            rStyle.top = '45px';
+            rStyle.width = '250px';
+            rStyle.right = '-53px';
+            rStyle.transform = 'rotate(45deg)';
+            rStyle.webkitTransform = 'rotate(45deg)';
+            rStyle.textAlign = 'center';
+            rStyle.fontSize = '17px!important';
+            rStyle.background = '#d64b4b';
+            rStyle.background = '-webkit-gradient(linear, left top, left bottom, from(#d64b4b), to(#ab2c2c))';
+            rStyle.background = '-webkit-linear-gradient(top, #d64b4b, #ab2c2c)';
+            rStyle.background = '-moz-linear-gradient(top, #d64b4b, #ab2c2c)';
+            rStyle.background = '-ms-linear-gradient(top, #d64b4b, #ab2c2c)';
+            rStyle.background = '-o-linear-gradient(top, #d64b4b, #ab2c2c)';
+            rStyle.backgroundImage = '-ms-linear-gradient(top, #d64b4b 0%, #ab2c2c 100%)';
+            rStyle.webkitBoxShadow = 'rgba(000,000,000,0.3) 0 1px 1px';
+            rStyle.mozBoxShadow = 'rgba(000,000,000,0.3) 0 1px 1px';
+            rStyle.boxShadow = 'rgba(000,000,000,0.3) 0 1px 1px';
+            rStyle.fontFamily = 'Helvetica Neue,Helvetica, sans-serif';
 
             ribbon.appendChild(getStitches('top'));
             ribbon.appendChild(getContent());
@@ -79,8 +102,9 @@ var bacon = (function () {
         if (null === content) {
             content = document.createElement("strong");
             content.id = "ribbon-content";
+            content.style.cursor = 'pointer';
             content.onclick = bacon.on;
-            content.innerHTML = '<h1>Add bacon!</h1>';
+            content.innerHTML = '<h1 style=\'color: #801111;font-size: 23px !important;margin: 0;padding: 5px 10px;text-shadow: 0 1px 0 #D65C5C;\'>Add bacon!</h1>';
         }
         return content;
     }
@@ -90,14 +114,14 @@ var bacon = (function () {
             document.body.style.background='url(data:image/png;base64,'+backgroundBacon+')';
             var content = getContent();
             content.onclick = bacon.off;
-            content.innerHTML = '<h1>Remove bacon!</h1>';
+            content.innerHTML = '<h1 style=\'color: #801111;font-size: 23px !important;margin: 0;padding: 5px 10px;text-shadow: 0 1px 0 #D65C5C;\'>Remove bacon!</h1>';
             playSizzle();
         },
         off: function () {
             document.body.style.background='';
             var content = getContent();
             content.onclick = bacon.on;
-            content.innerHTML = '<h1>Add bacon!</h1>';
+            content.innerHTML = '<h1 style=\'color: #801111;font-size: 23px !important;margin: 0;padding: 5px 10px;text-shadow: 0 1px 0 #D65C5C;\'>Add bacon!</h1>';
             stopSizzle();
         },
 
