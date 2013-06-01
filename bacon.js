@@ -86,9 +86,25 @@ var bacon = (function () {
 
     function getStitches(pos) {
         if (pos === 'top' || pos === 'bottom') {
-            var stitches = document.getElementById('ribbon-stitches-' + pos);
+            var stitches = document.getElementById('ribbon-stitches-' + pos),
+                alpha,
+                sStyle;
             if (null === stitches) {
                 stitches = document.createElement("div");
+                sStyle = stitches.style;
+                if (pos === 'top') {
+                    sStyle.marginTop = '2px';
+                    alpha = '0.5';
+                } else if(pos === 'bottom') {
+                    sStyle.marginBottom = '2px';
+                    alpha = '0.3';
+                }
+
+                sStyle.borderTop = '1px dashed rgba(0, 0, 0, 0.2)';
+                sStyle.mozBoxShadow = '0px 0px 2px rgba(0, 0, 0, ' + alpha + ')';
+                sStyle.webkitBoxShadow = '0px 0px 2px rgba(0, 0, 0, ' + alpha + ')';
+                sStyle.boxShadow = '0px 0px 2px rgba(255, 255, 255, ' + alpha + ')';
+
                 stitches.id = "ribbon-stitches-" + pos;
             }
             return stitches;
